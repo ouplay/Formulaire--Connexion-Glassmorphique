@@ -1,14 +1,31 @@
 import { StatusBar } from 'expo-status-bar';
-import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import React, { useState } from 'react';
+import { Button, StyleSheet, Text, View } from 'react-native';
+import Header from './components/Header'
+
+
 
 export default function App() {
-  return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
+
+const [afficher, setAfficher] = useState(false);
+
+const handlePress = function(){
+  
+  setAfficher(!afficher)
+}
+
+return (
+  <View style={styles.container}>
+    <Header title="Blackjack app" /> 
+      <View style={styles.body}>
+        {afficher == true && 
+        <Text>Coucou</Text>
+        }
+        <Button title={ afficher === false ? "afficher" : "cacher"} OnPress={handlePress}/>
+      </View>
       <StatusBar style="auto" />
-    </View>
-  );
+  </View>
+);
 }
 
 const styles = StyleSheet.create({
@@ -16,6 +33,12 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: '#fff',
     alignItems: 'center',
-    justifyContent: 'center',
+    justifyContent: 'flex-start',
   },
-});
+  body: {
+    height: '100%',
+    justifyContent: 'center',
+    alignItems: 'center',
+    color: "#FFF",
+  },
+})
